@@ -28,8 +28,8 @@ bot.on("message", async message => {
 
   //Trades
   if(cmd == `${prefix}open`){
-    var data = JSON.stringify(args);
-    fs.writeFile('trades.json', data, finished);
+    var data = message.author + JSON.stringify(args);
+    fs.appendFile('trades.json', data, finished);
     function finished(err){console.log('all set.');}
     return message.reply(`${args[0]} was opened at ${args[2]} Satoshis`);
   }
