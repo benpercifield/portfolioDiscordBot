@@ -28,7 +28,9 @@ bot.on("message", async message => {
 
   //Trades
   if(cmd == `${prefix}open`){
-    var data = message.author + '\n' + JSON.stringify(args) + '\n';
+    let currency = messageArray.slice(1,2);
+    let rate = messageArray.slice(3,4);
+    var data = message.author + '\n' + currency + '\n' + rate + '\n';
     fs.appendFile('trades.json', data, finished);
     function finished(err){console.log('all set.');}
     return message.reply(`${args[0]} was opened at ${args[2]} Satoshis`);
@@ -42,7 +44,7 @@ bot.on("message", async message => {
 
     let bicon = bot.user.displayAvatarURL;
     let botembed = new Discord.RichEmbed()
-    .setDescription("请把你所有的贸易告诉我！In this form: !open BTC at .00041 Satoshis")
+    .setDescription("请把你所有的贸易告诉我！In this form: !open WAN @ .00041 BTC")
     .setColor("#3e15f2")
     .setThumbnail(bicon)
     .addField("Created On:", bot.user.createdAt)
